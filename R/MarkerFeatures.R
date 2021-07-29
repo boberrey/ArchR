@@ -962,7 +962,10 @@ plotMarkerHeatmap <- function(
       mat <- bS[[1]][,colnames(mat),drop=FALSE]
     }
     clusterRows <- FALSE
-    clusterCols <- bS[[2]]
+    # Complex Heatmap requires that `cluster_columns` should be a logical value, 
+    # a clustering function or a clustering object. binarySort will return NULL if clusterCols is FALSE
+    # clusterCols <- bS[[2]]
+    if(clusterCols) clusterCols <- bS[[2]]
   }else{
     clusterRows <- TRUE
     clusterCols <- TRUE
